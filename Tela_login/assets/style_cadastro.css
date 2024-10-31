@@ -34,7 +34,7 @@ h2 {
     text-align: center;
 }
 
-.inputbox{
+.inputbox {
     position: relative;
     margin: 30px 0;
     width: 310px;
@@ -49,11 +49,14 @@ h2 {
     color: #fff;
     font-size: 1em;
     pointer-events: none;
-    transition: .5s;
+    transition: top 0.5s ease, font-size 0.5s ease, color 0.5s ease;
 }
-input:focus ~ label,
-input:valid ~ label {
+
+.inputbox input:focus ~ label,
+.inputbox input:valid ~ label {
     top: -5px;
+    font-size: 0.90em;
+    color: #fff;
 }
 
 /*corrigindo a caixa do preenchimento automático*/
@@ -64,7 +67,7 @@ input:valid ~ label {
     border: none;
     -webkit-box-shadow: 0 0 0px 1000px transparent inset;
     box-shadow: 0 0 0px 1000px transparent inset;
-    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s; /* Adicionado color para manter o texto branco */
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s; 
     color: #fff; /* Garante que o texto fique branco */
 }
 
