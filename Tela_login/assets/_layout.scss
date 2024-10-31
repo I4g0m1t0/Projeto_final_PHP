@@ -1,0 +1,12 @@
+// Estilização do layout da página em geral
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background: url(../images/imagem.jpg)no-repeat;
+    background-position: center;
+    background-size: cover;
+}
