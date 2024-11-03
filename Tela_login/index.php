@@ -1,6 +1,6 @@
 <?php
 $titulo = "Login";
-$stylePath = "assets/style_login.css"; // Apenas o caminho do CSS
+$stylePath = "assets/css/style_login.css"; // Apenas o caminho do CSS
 session_start();
 
 $erro = false;
