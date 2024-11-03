@@ -36,7 +36,7 @@ include __DIR__ . "/header.php";
 ?>
 
 <section>
-    <div class="form-box">
+    <div class="form-box-login">
         <div class="form-value">
             <form action="" method="POST">
                 <h2>Login</h2>
