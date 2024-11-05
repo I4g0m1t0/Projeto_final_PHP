@@ -1,0 +1,32 @@
+// Estilização dos links
+
+a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 60px;
+}
+
+// Cadastro
+.forget label a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 60px;
+}
+
+// Login
+.forget label a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 100px;
+}
+
+.register p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.forget label a:hover,
+.register p a:hover {
+    text-decoration: underline;
+}
