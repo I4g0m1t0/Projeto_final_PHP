@@ -1,0 +1,44 @@
+// Estilização específica do formulário de cadastro
+
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputbox label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1em;
+    pointer-events: none;
+    transition: top 0.5s ease, font-size 0.5s ease, color 0.5s ease;
+}
+
+.inputbox input:focus ~ label,
+.inputbox input:valid ~ label {
+    top: -5px;
+    font-size: 0.90em;
+    color: #fff;
+}
+
+/*corrigindo a caixa do preenchimento automático*/
+.inputbox input:-webkit-autofill,
+.inputbox input:-webkit-autofill:hover,
+.inputbox input:-webkit-autofill:focus,
+.inputbox input:-webkit-autofill:active {
+    border: none;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s; 
+    color: #fff; /* Garante que o texto fique branco */
+}
