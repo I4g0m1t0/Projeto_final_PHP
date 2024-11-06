@@ -8,25 +8,23 @@ if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Aqui eu requisito o banco pra encontrar a variável $pdo que foi responsável por instanciar o banco de dados
+    // Inclui o arquivo de conexão com o banco de dados
     include __DIR__ . '../assets/config/db.php';
 
-    // Aqui eu preparo a consulta SQL para buscar o usuário no banco
+    // Prepara a consulta SQL para buscar o usuário no banco
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
     $stmt->bindParam(":email", $email);
     $stmt->execute();
     
-    // Aqui eu pego o resultado da consulta SQL
+    // Pega o resultado da consulta SQL
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Verifica se o usuário foi encontrado
     if ($row && password_verify($senha, $row['senha'])) {
-        // Se sim
         $_SESSION['logado'] = true;
         header("Location: dashboard/dashboard.php");
-        exit; // Certifique-se de usar exit após header
+        exit;
     } else {
-        // Se não
         $erro = "Usuário ou senha incorretos.";
     }
 }

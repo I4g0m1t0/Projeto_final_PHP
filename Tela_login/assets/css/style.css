@@ -102,6 +102,11 @@ input:valid ~ label {
   margin: 25px 0 10px;
 }
 
+.error {
+  color: #fff;
+  margin-top: 15px;
+}
+
 .inputbox ion-icon {
   position: absolute;
   right: 8px;
@@ -116,8 +121,8 @@ section {
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  background: url(../images/imagem.jpg) no-repeat;
-  background-position: center;
+  background: url(../images/fundo_login.svg) no-repeat;
+  background-position: top;
   background-size: cover;
 }
 
