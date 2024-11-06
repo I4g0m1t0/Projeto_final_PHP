@@ -1,6 +1,5 @@
 <?php
 $titulo = "Cadastro";
-$stylePath = "assets/css/style_cadastro.css"; 
 
 // Verifica se o formulário foi enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
