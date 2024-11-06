@@ -1,6 +1,6 @@
 // Estilização específica do formulário de cadastro
 
-.form-box{
+.form-box-cadastro{
     position: relative;
     width: 400px;
     height: 500px;
@@ -11,24 +11,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.inputbox label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 1em;
-    pointer-events: none;
-    transition: top 0.5s ease, font-size 0.5s ease, color 0.5s ease;
-}
-
-.inputbox input:focus ~ label,
-.inputbox input:valid ~ label {
-    top: -5px;
-    font-size: 0.90em;
-    color: #fff;
 }
 
 /*corrigindo a caixa do preenchimento automático*/
