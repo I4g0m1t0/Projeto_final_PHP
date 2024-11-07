@@ -1,5 +1,6 @@
 <?php
 $titulo = "Cadastro";
+$erro = false;
 
 // Verifica se o formulário foi enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,11 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Executa a consulta
     if ($stmt->execute()) {
-        echo "Usuário cadastrado com sucesso!";
         header("Location: index.php");
         exit;
     } else {
-        echo "Erro ao cadastrar usuário.";
+        $erro = "Erro ao cadastrar usuário.";
     }
 }
 
@@ -57,6 +57,9 @@ include __DIR__ . "/header.php";
                 <button id="btn_signUp" type="submit">
                     Cadastrar
                 </button>
+                <?php if ($erro): ?>
+                    <div class="error"><?php echo $erro; ?></div>
+                <?php endif; ?>
                 <div class="register">
                     <p>Já tem uma conta? <a href="index.php">Log in</a></p>
                 </div>
