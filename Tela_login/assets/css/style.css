@@ -102,6 +102,13 @@ input:valid ~ label {
   margin: 25px 0 10px;
 }
 
+.error {
+  color: #fff;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .inputbox ion-icon {
   position: absolute;
   right: 8px;

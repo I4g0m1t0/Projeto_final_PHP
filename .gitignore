@@ -1,9 +1,3 @@
-# Ignorar a pasta vendor
-/vendor/
-
-# Ignorar arquivos do Composer
-composer.json
-composer.lock
 
 # Ignorar o arquivo de chave de serviço do Firebase
 serviceAccountKey.json
