@@ -4,20 +4,18 @@ session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Kreait\Firebase\Factory;
+// Verifique se o arquivo dataBase.php existe antes de incluí-lo
+$dbPath = realpath(__DIR__ . '/assets/config/dataBase.php');
+if ($dbPath === false) {
+    die('Erro: O arquivo dataBase.php não foi encontrado.');
+}
+require $dbPath;
 
 $erro = false;
 if (isset($_POST['email'])) {
     // Recebe o e-mail e a senha enviados pelo formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-
-    // Inicializa o Firebase
-    $firebase = (new Factory)
-        ->withServiceAccount(__DIR__ . '/../serviceAccountKey.json')
-        ->withDatabaseUri('https://senacaluno-a0710-default-rtdb.firebaseio.com');
-
-    $database = $firebase->createDatabase();
 
     // Busca o usuário no Firebase Realtime Database
     $reference = $database->getReference('usuarios')
@@ -29,7 +27,7 @@ if (isset($_POST['email'])) {
 
     // Verifica se o usuário foi encontrado
     if ($usuarios) {
-        foreach ($usuarios as $usuario) {
+        foreach ($usuarios as $usuario) { // Corrigido aqui
             if (password_verify($senha, $usuario['senha'])) {
                 // Se sim
                 $_SESSION['logado'] = true;
@@ -37,8 +35,6 @@ if (isset($_POST['email'])) {
                 exit; // Certifique-se de usar exit após header
             }
         }
-        // Se não
-        $erro = "Usuário ou senha incorretos.";
     } else {
         // Se não
         $erro = "Usuário ou senha incorretos.";
