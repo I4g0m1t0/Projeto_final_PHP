@@ -2,29 +2,43 @@
 $titulo = "Login";
 session_start();
 
+require __DIR__ . '/../vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+
 $erro = false;
 if (isset($_POST['email'])) {
     // Recebe o e-mail e a senha enviados pelo formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Aqui eu requisito o banco pra encontrar a variável $pdo que foi responsável por instanciar o banco de dados
-    include __DIR__ . '../assets/config/db.php';
+    // Inicializa o Firebase
+    $firebase = (new Factory)
+        ->withServiceAccount(__DIR__ . '/../serviceAccountKey.json')
+        ->withDatabaseUri('https://senacaluno-a0710-default-rtdb.firebaseio.com');
 
-    // Aqui eu preparo a consulta SQL para buscar o usuário no banco
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindParam(":email", $email);
-    $stmt->execute();
-    
-    // Aqui eu pego o resultado da consulta SQL
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $database = $firebase->createDatabase();
+
+    // Busca o usuário no Firebase Realtime Database
+    $reference = $database->getReference('usuarios')
+        ->orderByChild('email')
+        ->equalTo($email)
+        ->getSnapshot();
+
+    $usuarios = $reference->getValue();
 
     // Verifica se o usuário foi encontrado
-    if ($row && password_verify($senha, $row['senha'])) {
-        // Se sim
-        $_SESSION['logado'] = true;
-        header("Location: dashboard/dashboard.php");
-        exit; // Certifique-se de usar exit após header
+    if ($usuarios) {
+        foreach ($usuarios as $usuario) {
+            if (password_verify($senha, $usuario['senha'])) {
+                // Se sim
+                $_SESSION['logado'] = true;
+                header("Location: dashboard/dashboard.php");
+                exit; // Certifique-se de usar exit após header
+            }
+        }
+        // Se não
+        $erro = "Usuário ou senha incorretos.";
     } else {
         // Se não
         $erro = "Usuário ou senha incorretos.";

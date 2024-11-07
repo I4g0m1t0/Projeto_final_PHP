@@ -1,6 +1,10 @@
 <?php
 $titulo = "Cadastro";
 
+require __DIR__ . '/../vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+
 // Verifica se o formulário foi enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recebe os dados do formulário
@@ -8,22 +12,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['emailCadastro'];
     $senha = $_POST['senhaCadastro'];
 
-    // Inclui a configuração do banco de dados
-    include __DIR__ . '../assets/config/db.php';
+    // Inicializa o Firebase
+    $firebase = (new Factory)
+        ->withServiceAccount(__DIR__ . '/../serviceAccountKey.json')
+        ->withDatabaseUri('https://senacaluno-a0710-default-rtdb.firebaseio.com');
+
+    $database = $firebase->createDatabase();
 
     // Cria um hash da senha
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Prepara a consulta SQL para inserir os dados na tabela 'usuarios'
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
-    
-    // Vincula os parâmetros da consulta às variáveis
-    $stmt->bindParam(":nome", $nome);
-    $stmt->bindParam(":email", $email);
-    $stmt->bindParam(":senha", $senhaHash);
-    
-    // Executa a consulta
-    if ($stmt->execute()) {
+    // Prepara os dados para inserir no Firebase
+    $novoUsuario = [
+        'nome' => $nome,
+        'email' => $email,
+        'senha' => $senhaHash
+    ];
+
+    // Insere os dados no Firebase Realtime Database
+    $reference = $database->getReference('usuarios')->push($novoUsuario);
+
+    if ($reference) {
         echo "Usuário cadastrado com sucesso!";
         header("Location: index.php");
         exit;
@@ -64,14 +73,8 @@ include __DIR__ . "/header.php";
         </div>
     </div>
 </section>
-<script
-    type="module"
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-></script>
-<script
-    nomodule
-    src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
 <script src="assets/js/cadastro.js"></script>
 

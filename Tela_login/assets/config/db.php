@@ -1,4 +1,4 @@
-<?php 
+/* <?php 
 $host = "localhost";
 $db_name = "projeto_fausto";
 $db_user = "root";
@@ -13,4 +13,5 @@ try {
     echo $e->getMessage();
 }
 
-?>
+?> */
+
