@@ -22,7 +22,7 @@ if (isset($_POST['email'])) {
     // Verifica se o usuário foi encontrado
     if ($row && password_verify($senha, $row['senha'])) {
         $_SESSION['logado'] = true;
-        header("Location: ../Tela_inicial_php/index.php");
+        header("Location: ../Tela_inicial/index.php");
         exit;
     } else {
         $erro = "Usuário ou senha incorretos.";
