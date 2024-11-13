@@ -1,0 +1,47 @@
+.content {
+    display: flex;
+    height: 100vh; // Garante altura total da tela
+    width: 100%;
+  }
+
+  /*conteúdo da página*/
+.main-content {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 100%;
+    flex: 1;
+}
+
+.titulo {
+    width: 100%;
+    background-color: #D9D9D9;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px; // Valor padrão
+
+    // Cor padrão
+    color: #01744C;
+
+    &--variante1 {
+        color: #FF0000;
+        border-radius: 12px;
+    }
+
+    &--variante2 {
+        color: #EB1414;
+        border-radius: 12px;
+    }
+}
+
+.titulo i {
+    font-size: 38px;
+    margin-right: 10px;
+}
+
+.titulo h4 {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0;
+}

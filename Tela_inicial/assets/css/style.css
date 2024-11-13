@@ -1,106 +1,114 @@
+@charset "UTF-8";
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 html, body {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 header {
-    background-color: #D7D7D7;
-    max-height: 60px;
+  background-color: #D7D7D7;
+  max-height: 60px;
+  height: 100%;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between; /* Espaça os menus */
-    align-items: center;
-    width: 100%;
-    padding: 0 20px; /* Adiciona espaço nas laterais da navbar */
-    max-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-height: 60px;
+  height: 100%;
 }
-
-.menu-left,
-.menu-right {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Espaçamento entre os ícones */
+.navbar i {
+  color: #212529;
 }
-
-.menu-left {
-    margin-left: 20px; /* Garante que o ícone do menu esquerdo (hamburguer) não fique na borda */
+.navbar .menu-left,
+.navbar .menu-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-
-.menu-right {
-    margin-right: 20px; /* Garante que o ícone do menu direito (notificação) não fique na borda */
+.navbar .menu-left.menu-left,
+.navbar .menu-right.menu-left {
+  margin-left: 20px;
 }
-
-.menu-left img {
-    height: 40px;
+.navbar .menu-left.menu-left img,
+.navbar .menu-right.menu-left img {
+  height: 40px;
 }
-
-.menu-left i {
-    font-size: 38px;
-    cursor: pointer;
+.navbar .menu-left.menu-left i,
+.navbar .menu-right.menu-left i {
+  font-size: 38px;
+  cursor: pointer;
 }
-
-.menu-right i {
-    font-size: 24px; /* Tamanho dos ícones */
-    cursor: pointer;
+.navbar .menu-left.menu-right,
+.navbar .menu-right.menu-right {
+  margin-right: 20px;
 }
-
-.menu-right i:hover {
-    color: #007bff; /* Cor ao passar o mouse sobre os ícones */
+.navbar .menu-left.menu-right i,
+.navbar .menu-right.menu-right i {
+  font-size: 24px;
+  cursor: pointer;
 }
-
-/*div que está abaixo da nav-bar*/
-.content {
-    display: flex;
-    height: 100vh; /* Garante altura total da tela */
-    width: 100%;
+.navbar .menu-left.menu-right i:hover,
+.navbar .menu-right.menu-right i:hover {
+  color: #007bff;
 }
 
 .sidebar {
-    display: flex;
-    flex-direction: column; /* Alinha os itens verticalmente */
-    width: 100px; /* Largura fixa */
-    background-color: #1D376C;
-    color: white;
-    height: 100%; /* Estica para altura total */
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  background-color: #1d376c;
+  color: white;
+  height: 100%;
 }
-
 .sidebar .menu {
-    display: flex;
-    align-items: center; /* Alinha o ícone e o texto verticalmente no centro */
-    height: 80px; /* Define a altura dos itens do menu */
-    border-bottom: 2px solid #fff; /* Adiciona uma borda inferior */
-    text-transform: uppercase;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-bottom: 2px solid #fff;
+  text-transform: uppercase;
+  justify-content: center;
+}
+.sidebar .menu a {
+  text-decoration: none;
+  color: #fff;
+}
+.sidebar .menu i {
+  font-size: 38px;
+  color: #fff;
+}
+.sidebar .menu h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+}
+.sidebar .menu:hover {
+  background-color: #f59323;
+  cursor: pointer;
 }
 
-.sidebar i {
-    font-size: 38px;
-}
-
-.sidebar h4 {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.sidebar :hover {
-    background-color: #F59323;
-    cursor: pointer;
+.content {
+  display: flex;
+  height: 100vh;
+  width: 100%;
 }
 
 /*conteúdo da página*/
@@ -112,76 +120,40 @@ header {
 }
 
 .titulo {
-    width: 100%;
-    background-color: #D9D9D9;
-    height: 125px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #01744C;
-    border-radius: 15px;
+  width: 100%;
+  background-color: #D9D9D9;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #01744C;
+}
+.titulo--variante1 {
+  color: #FF0000;
+  border-radius: 12px;
+}
+.titulo--variante2 {
+  color: #EB1414;
+  border-radius: 12px;
 }
 
 .titulo i {
-    font-size: 38px;
-    margin-right: 10px;
+  font-size: 38px;
+  margin-right: 10px;
 }
 
 .titulo h4 {
-    font-weight: bold;
-    font-size: 25px;
-    margin: 0;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0;
 }
 
-.conteudo01, .conteudo02 {
-    display: flex;
-    flex-direction: column; /* Empilha os elementos verticalmente */
-    justify-content: space-between; /* Distribui o conteúdo com espaço entre eles */
-    padding: 30px;
-    background-color: #d7d7d7;
-    border-radius: 12px;
-    text-align: center;
-    margin: 20px auto;
-    max-width: 100%;
-}
-
-.conteudo01 {
-    height: 380px; /* Define uma altura fixa */
-}
-
-.conteudo02 {
-    height: 250px; /* Define uma altura fixa */
-}
-
-.conteudo01 h4, .conteudo02 h4 {
-    font-size: 22px; /* Maior destaque ao título */
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #000; /* Preto para maior contraste */
-}
-
-.conteudo01 p, .conteudo02 p {
-    font-size: 16px;
-    line-height: 1.5; /* Melhora o espaçamento entre linhas */
-    color: #333;
-    margin: 0;
-}
-
-.conteudo01 button, .conteudo02 button {
-    align-self: center; /* Centraliza o botão horizontalmente */
-    background-color: #1d376c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: auto; /* Empurra o botão para o fim */
-    max-width: 530px;
-    width: 100%;
-}
-
-.conteudo01 button:hover, .conteudo02 button:hover {
-    background-color: #142a51;
-}
+@media (max-width: 1024px) {
+  header {
+    max-height: 50px;
+  }
+  .navbar {
+    max-height: 50px;
+  }
+}/*# sourceMappingURL=style.css.map */

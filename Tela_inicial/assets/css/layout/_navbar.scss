@@ -1,0 +1,45 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; // Espaça os menus
+  align-items: center;
+  width: 100%;
+  max-height: 60px;
+  height: 100%;
+
+  i {
+    color: #212529;
+  }
+
+  .menu-left,
+  .menu-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; // Espaçamento entre os ícones
+
+    &.menu-left {
+      margin-left: 20px; // Garante que o ícone do menu esquerdo (hamburguer) não fique na borda
+
+      img {
+        height: 40px;
+      }
+
+      i {
+        font-size: 38px;
+        cursor: pointer;
+      }
+    }
+
+    &.menu-right {
+      margin-right: 20px; // Garante que o ícone do menu direito (notificação) não fique na borda
+
+      i {
+        font-size: 24px; // Tamanho dos ícones
+        cursor: pointer;
+
+        &:hover {
+          color: #007bff; // Cor ao passar o mouse sobre os ícones
+        }
+      }
+    }
+  }
+}

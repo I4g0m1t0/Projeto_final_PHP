@@ -19,6 +19,7 @@ body {
 header {
     background-color: #D7D7D7;
     max-height: 60px;
+    height: 100%;
 }
 
 a {
@@ -30,8 +31,12 @@ a {
     justify-content: space-between; /* Espaça os menus */
     align-items: center;
     width: 100%;
-    padding: 0 20px; /* Adiciona espaço nas laterais da navbar */
     max-height: 60px;
+    height: 100%;
+}
+
+.navbar i {
+    color: #212529;
 }
 
 .menu-left,
@@ -153,7 +158,6 @@ a {
 
 .conteudo01 textarea {
     height: 200px;
-    width: 100%;
     border: none;
     border-radius: 12px;
     resize: none;
