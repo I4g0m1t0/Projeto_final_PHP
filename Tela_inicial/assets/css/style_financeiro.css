@@ -1,0 +1,215 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: #D7D7D7;
+    max-height: 60px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Espaça os menus */
+    align-items: center;
+    width: 100%;
+    padding: 0 20px; /* Adiciona espaço nas laterais da navbar */
+    max-height: 60px;
+}
+
+.menu-left,
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os ícones */
+}
+
+.menu-left {
+    margin-left: 20px; /* Garante que o ícone do menu esquerdo (hamburguer) não fique na borda */
+}
+
+.menu-right {
+    margin-right: 20px; /* Garante que o ícone do menu direito (notificação) não fique na borda */
+}
+
+.menu-left img {
+    height: 40px;
+}
+
+.menu-left i {
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.menu-right i {
+    font-size: 24px; /* Tamanho dos ícones */
+    cursor: pointer;
+}
+
+.menu-right i:hover {
+    color: #007bff; /* Cor ao passar o mouse sobre os ícones */
+}
+
+/*div que está abaixo da nav-bar*/
+.content {
+    display: flex;
+    height: 100vh; /* Garante altura total da tela */
+    width: 100%;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    width: 100px; /* Largura fixa */
+    background-color: #1D376C;
+    color: white;
+    height: 100%; /* Estica para altura total */
+}
+
+.sidebar .menu {
+    display: flex;
+    align-items: center; /* Alinha o ícone e o texto verticalmente no centro */
+    height: 80px; /* Define a altura dos itens do menu */
+    border-bottom: 2px solid #fff; /* Adiciona uma borda inferior */
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar i {
+    font-size: 38px;
+}
+
+.sidebar h4 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.sidebar :hover {
+    background-color: #F59323;
+    cursor: pointer;
+}
+
+/*conteúdo da página*/
+.main-content {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 100%;
+    flex: 1;
+}
+
+.titulo {
+    width: 100%;
+    background-color: #D9D9D9;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EB1414;
+    border-radius: 15px;
+}
+
+.titulo i {
+    font-size: 38px;
+    margin-right: 10px;
+}
+
+.titulo h4 {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0;
+}
+
+.conteudo01 {
+    display: flex;
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    justify-content: space-between; /* Mantém os elementos alinhados no topo */
+    padding: 30px;
+    background-color: #d7d7d7;
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px auto;
+    width: 100%;
+    height: 480px; /* Altura dinâmica baseada no conteúdo */
+}
+
+.conteudo01 h4 {
+    font-size: 22px; /* Maior destaque ao título */
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000; /* Preto para maior contraste */
+    text-transform: uppercase;
+}
+
+.scrollable {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços entre as bordas */
+}
+
+th, td {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.pago td {
+    color: #2A6B00; /* Verde escuro */
+    font-weight: bold;
+}
+
+.pendente td {
+    color: #EB1414; /* Vermelho forte */
+    font-weight: bold;
+}
+
+td:last-child {
+    text-transform: uppercase; /* Apenas a última coluna em maiúsculas */
+}
+
+.contato {
+    text-transform: uppercase;
+    margin-top: auto;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    th, td {
+        font-size: 12px; /* Ajusta o tamanho do texto para telas menores */
+        padding: 8px;
+    }
+}
