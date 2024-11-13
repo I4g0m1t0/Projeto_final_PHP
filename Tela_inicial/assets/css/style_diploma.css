@@ -120,61 +120,118 @@ a {
     flex: 1;
 }
 
+.titulo {
+    width: 100%;
+    background-color: #D9D9D9;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EB1414;
+    border-radius: 15px;
+}
+
+.titulo i {
+    font-size: 38px;
+    margin-right: 10px;
+}
+
+.titulo h4 {
+    font-weight: bold;
+    font-size: 25px;
+    margin: 0;
+}
+
 .conteudo01 {
     display: flex;
-    flex-direction: column; /* Empilha os elementos verticalmente */
-    justify-content: space-between; /* Distribui o conteúdo com espaço entre eles */
+    flex-direction: column;
+    justify-content: space-between;
     padding: 30px;
     background-color: #d7d7d7;
     border-radius: 12px;
     text-align: center;
-    max-width: 100%;
-}
-
-.conteudo01 {
-    height: 380px; /* Define uma altura fixa */
+    width: 100%;
+    height: auto;
 }
 
 .conteudo01 h4 {
-    font-size: 22px; /* Maior destaque ao título */
+    font-size: 22px;
     font-weight: bold;
-    margin-bottom: 10px;
-    color: #000; /* Preto para maior contraste */
+    margin-bottom: 15px;
+    color: #000;
+    text-transform: uppercase;
 }
 
-.conteudo01 p{
-    font-size: 16px;
-    line-height: 1.5; /* Melhora o espaçamento entre linhas */
-    color: #333;
+.tabela {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden; /* Garante que o border-radius seja visível */
+}
+
+.title, .linha {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o texto ao topo */
+    align-items: center;
+    width: 100%; /* Define a largura das colunas */
+}
+
+.title {
+    background-color: #FDC180;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.title p {
     margin: 0;
-    text-align: left;
-    margin-bottom: 5px;
 }
 
-.conteudo01 textarea {
-    height: 200px;
-    width: 100%;
-    border: none;
-    border-radius: 12px;
-    resize: none;
-    padding: 5px;
+.linha {
+    background-color: #e0d4c7;
+    padding: 10px;
+    text-align: center;
 }
 
-.conteudo01 button {
-    align-self: center; /* Centraliza o botão horizontalmente */
-    background-color: #1d376c;
-    color: white;
+.linha p {
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+.linha button {
+    margin: 5px 0;
+    background-color: #F59323;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: auto; /* Empurra o botão para o fim */
-    max-width: 530px;
-    width: 100%;
+    color: white;
+    height: 35px;
+    width: 100%; /* Botões ocupam toda a largura da linha */
+    border-radius: 10px;
+    font-size: 16px;
 }
 
-.conteudo01 button:hover {
-    background-color: #142a51;
+.linha button:hover {
+    background-color: #c68700;
+}
+
+.divisao {
+    border-right: #fff 2px solid;
+    border-left: #fff 2px solid;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .tabela {
+        flex-direction: column; /* Empilha os itens quando a tela for pequena */
+    }
+
+    .title, .linha {
+        width: 100%; /* As colunas vão ocupar 100% da largura */
+    }
+
+    .linha button {
+        width: 100%; /* Botões ocupam toda a largura disponível */
+    }
 }

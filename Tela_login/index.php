@@ -26,10 +26,15 @@ if (isset($_POST['email'])) {
     $usuarios = $reference->getValue();
 
     // Verifica se o usuário foi encontrado
-    if ($row && password_verify($senha, $row['senha'])) {
-        $_SESSION['logado'] = true;
-        header("Location: dashboard/dashboard.php");
-        exit;
+    if ($usuarios) {
+        foreach ($usuarios as $row) {
+            if (password_verify($senha, $row['senha'])) {
+                $_SESSION['logado'] = true;
+                header("Location: ../tela_inicial/index.php");
+                exit;
+            }
+        }
+        $erro = "Usuário ou senha incorretos.";
     } else {
         $erro = "Usuário ou senha incorretos.";
     }

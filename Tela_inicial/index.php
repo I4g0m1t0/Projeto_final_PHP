@@ -1,14 +1,5 @@
 <?php
-require __DIR__ . '/../../../vendor/autoload.php';
-
-use Kreait\Firebase\Factory;
-use Kreait\Firebase\Exception\DatabaseException;
-
-$firebase = (new Factory)
-    ->withServiceAccount(__DIR__ . '/../../../serviceAccountKey.json')
-    ->withDatabaseUri('https://senacaluno-a0710-default-rtdb.firebaseio.com');
-
-$database = $firebase->createDatabase();
+require __DIR__ . '/../Tela_login/assets/config/dataBase.php';
 
 try {
     $reference = $database->getReference('alunos/1');
