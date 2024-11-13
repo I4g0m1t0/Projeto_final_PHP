@@ -128,7 +128,7 @@ a {
     align-items: center;
     justify-content: center;
     color: #EB1414;
-    border-radius: 12px;
+    border-radius: 15px;
 }
 
 .titulo i {
@@ -144,72 +144,94 @@ a {
 
 .conteudo01 {
     display: flex;
-    flex-direction: column; /* Empilha os elementos verticalmente */
-    justify-content: space-between; /* Mantém os elementos alinhados no topo */
+    flex-direction: column;
+    justify-content: space-between;
     padding: 30px;
     background-color: #d7d7d7;
     border-radius: 12px;
     text-align: center;
-    margin: 20px auto;
     width: 100%;
-    height: 480px; /* Altura dinâmica baseada no conteúdo */
+    height: auto;
 }
 
 .conteudo01 h4 {
-    font-size: 22px; /* Maior destaque ao título */
+    font-size: 22px;
     font-weight: bold;
     margin-bottom: 15px;
-    color: #000; /* Preto para maior contraste */
+    color: #000;
     text-transform: uppercase;
 }
 
-.scrollable {
+.tabela {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    overflow: hidden; /* Garante que o border-radius seja visível */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse; /* Remove espaços entre as bordas */
+.title, .linha {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o texto ao topo */
+    align-items: center;
+    width: 100%; /* Define a largura das colunas */
 }
 
-th, td {
-    text-align: center;
+.title {
+    background-color: #FDC180;
     padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.title p {
+    margin: 0;
+}
+
+.linha {
+    background-color: #e0d4c7;
+    padding: 10px;
+    text-align: center;
+}
+
+.linha p {
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+.linha button {
+    margin: 5px 0;
+    background-color: #F59323;
+    border: none;
+    cursor: pointer;
+    color: white;
+    height: 35px;
+    width: 100%; /* Botões ocupam toda a largura da linha */
+    border-radius: 10px;
     font-size: 16px;
 }
 
-th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+.linha button:hover {
+    background-color: #c68700;
 }
 
-.pago td {
-    color: #2A6B00; /* Verde escuro */
-    font-weight: bold;
+.divisao {
+    border-right: #fff 2px solid;
+    border-left: #fff 2px solid;
 }
 
-.pendente td {
-    color: #EB1414; /* Vermelho forte */
-    font-weight: bold;
-}
-
-td:last-child {
-    text-transform: uppercase; /* Apenas a última coluna em maiúsculas */
-}
-
-.contato {
-    text-transform: uppercase;
-    margin-top: auto;
-    font-weight: bold;
-}
-
+/* Responsividade */
 @media (max-width: 768px) {
-    th, td {
-        font-size: 12px; /* Ajusta o tamanho do texto para telas menores */
-        padding: 8px;
+    .tabela {
+        flex-direction: column; /* Empilha os itens quando a tela for pequena */
+    }
+
+    .title, .linha {
+        width: 100%; /* As colunas vão ocupar 100% da largura */
+    }
+
+    .linha button {
+        width: 100%; /* Botões ocupam toda a largura disponível */
     }
 }
