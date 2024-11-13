@@ -14,7 +14,7 @@ include __DIR__ . "/../assets/includes/components/sidebar.php";
 ?>
 
 <div class="main-content">
-    <div class="titulo">
+    <div class="titulo titulo--variante1">
         <h4>PERÍDO DE REMATRICULA ABERTO! DIAS 15/11 À 15/12</h4>
     </div>
     <div class="conteudo01">

@@ -199,3 +199,19 @@ a {
 .conteudo01 button:hover, .conteudo02 button:hover {
     background-color: #142a51;
 }
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+
+}
+
+/* Tela maior que 768px e até 1024px */
+@media (max-width: 1024px) {
+    header {
+        max-height: 50px;
+    }
+
+    .navbar {
+        max-height: 50px;
+    }
+}

@@ -14,7 +14,7 @@ include __DIR__ . "/../assets/includes/components/sidebar.php";
 ?>
 
 <div class="main-content">
-    <div class="titulo">
+    <div class="titulo titulo--variante2">
         <i class="fa-solid fa-face-frown-open"></i>
         <h4>OH NÃO! VOCÊ TEM PENDÊNCIAS FINANCEIRAS!</h4>
     </div>

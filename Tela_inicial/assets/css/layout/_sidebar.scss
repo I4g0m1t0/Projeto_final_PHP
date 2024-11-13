@@ -1,0 +1,38 @@
+.sidebar {
+    display: flex;
+    flex-direction: column; // Alinha os itens verticalmente
+    width: 100px; // Largura fixa
+    background-color: #1d376c;
+    color: white;
+    height: 100%; // Estica para altura total
+  
+    .menu {
+      display: flex;
+      align-items: center; // Alinha o ícone e o texto verticalmente no centro
+      height: 80px; // Define a altura dos itens do menu
+      border-bottom: 2px solid #fff; // Adiciona uma borda inferior
+      text-transform: uppercase;
+      justify-content: center;
+      
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+      
+      i {
+        font-size: 38px;
+        color: #fff;
+      }
+      
+      h4 {
+        font-size: 15px;
+        font-weight: bold;
+        margin: 0;
+      }
+  
+      &:hover {
+        background-color: #f59323;
+        cursor: pointer;
+      }
+    }
+  }

@@ -1,0 +1,9 @@
+// Importa arquivos SASS
+@import 'base/global';
+
+@import 'layout/header';
+@import 'layout/navbar';
+@import 'layout/sidebar';
+@import 'layout/content';
+
+@import 'utils/media-queries';
