@@ -26,26 +26,12 @@ if (isset($_POST['email'])) {
     $usuarios = $reference->getValue();
 
     // Verifica se o usuário foi encontrado
-    if ($usuarios) {
-        $senhaCorreta = false;
-        foreach ($usuarios as $usuario) {
-            if (password_verify($senha, $usuario['senha'])) {
-                // Se a senha estiver correta
-                $_SESSION['logado'] = true;
-                header("Location: dashboard/dashboard.php");
-                exit; // Certifique-se de usar exit após header
-            } else {
-                $senhaCorreta = true;
-            }
-        }
-        if ($senhaCorreta) {
-            $erro = "Senha incorreta.";
-        } else {
-            $erro = "Usuário não encontrado.";
-        }
+    if ($row && password_verify($senha, $row['senha'])) {
+        $_SESSION['logado'] = true;
+        header("Location: dashboard/dashboard.php");
+        exit;
     } else {
-        // Se não houver usuários com o e-mail fornecido
-        $erro = "Usuário não encontrado.";
+        $erro = "Usuário ou senha incorretos.";
     }
 }
 
