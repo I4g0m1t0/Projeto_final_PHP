@@ -2,28 +2,39 @@
 $titulo = "Login";
 session_start();
 
+require __DIR__ . '/../vendor/autoload.php';
+
+// Verifique se o arquivo dataBase.php existe antes de incluí-lo
+$dbPath = realpath(__DIR__ . '/assets/config/dataBase.php');
+if ($dbPath === false) {
+    die('Erro: O arquivo dataBase.php não foi encontrado.');
+}
+require $dbPath;
+
 $erro = false;
 if (isset($_POST['email'])) {
     // Recebe o e-mail e a senha enviados pelo formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Inclui o arquivo de conexão com o banco de dados
-    include __DIR__ . '../assets/config/db.php';
+    // Busca o usuário no Firebase Realtime Database
+    $reference = $database->getReference('usuarios')
+        ->orderByChild('email')
+        ->equalTo($email)
+        ->getSnapshot();
 
-    // Prepara a consulta SQL para buscar o usuário no banco
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindParam(":email", $email);
-    $stmt->execute();
-    
-    // Pega o resultado da consulta SQL
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $usuarios = $reference->getValue();
 
     // Verifica se o usuário foi encontrado
-    if ($row && password_verify($senha, $row['senha'])) {
-        $_SESSION['logado'] = true;
-        header("Location: ../Tela_inicial/index.php");
-        exit;
+    if ($usuarios) {
+        foreach ($usuarios as $row) {
+            if (password_verify($senha, $row['senha'])) {
+                $_SESSION['logado'] = true;
+                header("Location: ../tela_inicial/index.php");
+                exit;
+            }
+        }
+        $erro = "Usuário ou senha incorretos.";
     } else {
         $erro = "Usuário ou senha incorretos.";
     }

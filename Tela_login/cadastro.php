@@ -1,5 +1,10 @@
 <?php
 $titulo = "Cadastro";
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use Kreait\Firebase\Factory;
+
 $erro = false;
 
 // Verifica se o formulário foi enviado via método POST
@@ -9,12 +14,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['emailCadastro'];
     $senha = $_POST['senhaCadastro'];
 
+    // Inicializa o Firebase
+    $firebase = (new Factory)
+        ->withServiceAccount(__DIR__ . '/../serviceAccountKey.json')
+        ->withDatabaseUri('https://senacaluno-a0710-default-rtdb.firebaseio.com');
+
+    $database = $firebase->createDatabase();
+=======
     // Inclui a configuração do banco de dados
     include __DIR__ . '../assets/config/db.php';
 
     // Cria um hash da senha
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
+    // Prepara os dados para inserir no Firebase
+    $novoUsuario = [
+        'nome' => $nome,
+        'email' => $email,
+        'senha' => $senhaHash
+    ];
+
+    // Insere os dados no Firebase Realtime Database
+    $reference = $database->getReference('usuarios')->push($novoUsuario);
+
+    if ($reference) {
+        echo "Usuário cadastrado com sucesso!";
+        header("Location: index.php");
+        exit;
+    } else {
+        echo "Erro ao cadastrar usuário.";
     // Prepara a consulta SQL para inserir os dados na tabela 'usuarios'
     $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
     
@@ -67,6 +95,8 @@ include __DIR__ . "/header.php";
         </div>
     </div>
 </section>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script
     type="module"
     src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

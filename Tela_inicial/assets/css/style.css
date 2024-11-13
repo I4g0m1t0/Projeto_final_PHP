@@ -113,10 +113,10 @@ header {
 
 /*conteúdo da página*/
 .main-content {
-  padding: 20px;
-  background-color: #ffffff;
-  width: 100%;
-  flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    width: 100%;
+    flex: 1;
 }
 
 .titulo {
