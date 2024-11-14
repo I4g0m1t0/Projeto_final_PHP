@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    background-color: #D7D7D7;
+    max-height: 60px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Espaça os menus */
+    align-items: center;
+    width: 100%;
+    padding: 0 20px; /* Adiciona espaço nas laterais da navbar */
+    max-height: 60px;
+}
+
+.menu-left,
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os ícones */
+}
+
+.menu-left {
+    margin-left: 20px; /* Garante que o ícone do menu esquerdo (hamburguer) não fique na borda */
+}
+
+.menu-right {
+    margin-right: 20px; /* Garante que o ícone do menu direito (notificação) não fique na borda */
+}
+
+.menu-left img {
+    height: 40px;
+}
+
+.menu-left i {
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.menu-right i {
+    font-size: 24px; /* Tamanho dos ícones */
+    cursor: pointer;
+}
+
+.menu-right i:hover {
+    color: #007bff; /* Cor ao passar o mouse sobre os ícones */
+}
+
+/*div que está abaixo da nav-bar*/
+.content {
+    display: flex;
+    height: 100vh; /* Garante altura total da tela */
+    width: 100%;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    width: 100px; /* Largura fixa */
+    background-color: #1D376C;
+    color: white;
+    height: 100%; /* Estica para altura total */
+}
+
+.sidebar .menu {
+    display: flex;
+    align-items: center; /* Alinha o ícone e o texto verticalmente no centro */
+    height: 80px; /* Define a altura dos itens do menu */
+    border-bottom: 2px solid #fff; /* Adiciona uma borda inferior */
+    text-transform: uppercase;
+    justify-content: center;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.sidebar i {
+    font-size: 38px;
+}
+
+.sidebar h4 {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.sidebar :hover {
+    background-color: #F59323;
+    cursor: pointer;
+}
+
+/*conteúdo da página*/
+.main-content {
+    padding: 20px;
+    background-color: #ffffff;
+    width: 100%;
+    flex: 1;
+}
+
+.titulo {
+    width: 100%;
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #01744C;
+    border-radius: 15px;
+    padding: 20px; /* Adiciona espaço ao redor do conteúdo */
+}
+
+.titulo i {
+    font-size: 38px;
+    margin-bottom: 10px; /* Adiciona espaço abaixo do ícone */
+}
+
+.titulo h4{
+    font-weight: bold;
+}
+
+.titulo h4, .titulo h5 {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.titulo h5 {
+    margin-top: 10px; /* Adiciona espaço acima do h5 */
+    line-height: 1.5; /* Melhora o espaçamento entre linhas */
+    padding: 20px;
+}
+
+
+.conteudo01, .conteudo02 {
+    display: flex;
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    justify-content: space-between; /* Distribui o conteúdo com espaço entre eles */
+    padding: 30px;
+    background-color: #d7d7d7;
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 100%;
+    text-transform: uppercase;
+}
+
+.conteudo01 {
+    height: 380px; /* Define uma altura fixa */
+}
+
+.conteudo02 {
+    height: 250px; /* Define uma altura fixa */
+}
+
+.conteudo01 h4, .conteudo02 h4 {
+    font-size: 22px; /* Maior destaque ao título */
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #000; /* Preto para maior contraste */
+}
+
+.conteudo01 p, .conteudo02 p {
+    font-size: 16px;
+    line-height: 1.5; /* Melhora o espaçamento entre linhas */
+    color: #333;
+    margin: 0;
+}
+
+.conteudo01 button, .conteudo02 button {
+    align-self: center; /* Centraliza o botão horizontalmente */
+    background-color: #1d376c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: auto; /* Empurra o botão para o fim */
+    max-width: 530px;
+    width: 100%;
+}
+
+.conteudo01 button:hover, .conteudo02 button:hover {
+    background-color: #142a51;
+}
+
+.nome, .dtNasc, .curso, .alertas {
+    display: flex;
+    border-bottom: #fff 1px solid;
+}
+
+.info-aluno p{
+    white-space: pre;
+}
+
+.conteudo01 button {
+    text-transform: none;
+}
+
+#alertas {
+    color: #FF0000;
+}
+
+.alerta-aluno {
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.alerta-aluno p {
+    white-space: pre; /* Preserva os espaços dentro do texto */
+    margin: 0; /* Remove o espaço extra entre os <p> se você quiser um estilo mais compacto */
+}
+
+.turma, .frequencia, .mensalidade, .horario {
+    display: flex;
+}
+
+.info-curso p{
+    white-space: pre;
+}
+
+.conteudo02 button {
+    text-transform: none;
+}

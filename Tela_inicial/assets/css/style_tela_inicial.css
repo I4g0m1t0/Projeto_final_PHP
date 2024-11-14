@@ -215,3 +215,7 @@ a {
         max-height: 50px;
     }
 }
+
+.menu.selected {
+    background-color: orange;
+}

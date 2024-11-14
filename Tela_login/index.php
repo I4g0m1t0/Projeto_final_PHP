@@ -9,7 +9,7 @@ if (isset($_POST['email'])) {
     $senha = $_POST['senha'];
 
     // Inclui o arquivo de conexão com o banco de dados
-    include __DIR__ . '../assets/config/db.php';
+    include __DIR__ . '../assets/config/dataBase.php';
 
     // Prepara a consulta SQL para buscar o usuário no banco
     $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");

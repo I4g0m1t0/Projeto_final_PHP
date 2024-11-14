@@ -2,6 +2,9 @@
 $titulo = "Cadastro";
 $erro = false;
 
+// Inclui a configuração do Firebase
+include __DIR__ . '/assets/config/dataBase.php';
+
 // Verifica se o formulário foi enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recebe os dados do formulário
@@ -9,26 +12,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['emailCadastro'];
     $senha = $_POST['senhaCadastro'];
 
-    // Inclui a configuração do banco de dados
-    include __DIR__ . '../assets/config/db.php';
-
-    // Cria um hash da senha
-    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-    // Prepara a consulta SQL para inserir os dados na tabela 'usuarios'
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
-    
-    // Vincula os parâmetros da consulta às variáveis
-    $stmt->bindParam(":nome", $nome);
-    $stmt->bindParam(":email", $email);
-    $stmt->bindParam(":senha", $senhaHash);
-    
-    // Executa a consulta
-    if ($stmt->execute()) {
-        header("Location: index.php");
-        exit;
+    // Validação básica dos dados
+    if (empty($nome) || empty($email) || empty($senha)) {
+        $erro = "Todos os campos são obrigatórios.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $erro = "Email inválido.";
     } else {
-        $erro = "Erro ao cadastrar usuário.";
+        // Verifica se a variável $database está definida
+        if (isset($database)) {
+            // Cria um hash da senha
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+            try {
+                // Prepara os dados para inserção no Firebase
+                $newUser = [
+                    'nome' => $nome,
+                    'email' => $email,
+                    'senha' => $senhaHash
+                ];
+
+                // Insere os dados no Firebase
+                $database->getReference('usuarios')->push($newUser);
+
+                // Redireciona para a página de login após o cadastro bem-sucedido
+                header("Location: index.php");
+                exit;
+            } catch (Exception $e) {
+                $erro = "Erro ao cadastrar usuário: " . $e->getMessage();
+            }
+        } else {
+            $erro = "Erro ao conectar ao banco de dados.";
+        }
     }
 }
 
