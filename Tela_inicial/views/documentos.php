@@ -11,8 +11,9 @@ $diplomaRoute = "../views/diploma.php";
 include __DIR__ . "/../assets/includes/header.php";
 include __DIR__ . "/../assets/includes/components/navbar.php";
 include __DIR__ . "/../assets/includes/components/sidebar.php";
+
 // Inclui a configuração do banco de dados
-include __DIR__ . '/../../Tela_login/assets/config/dataBase.php';
+include __DIR__ . '/../../config/db.php';
 
 // Verifica se a variável $database está definida
 if (!isset($database)) {
@@ -51,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <textarea name="input_documentos" id="input_documentos" required></textarea>
             <button type="submit">Enviar Solicitação</button>
         </form>
-</div>
+    </div>
 </div>
 
 <?php 
