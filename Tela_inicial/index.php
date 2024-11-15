@@ -11,6 +11,28 @@ $diplomaRoute = "views/diploma.php";
 include __DIR__ . "/assets/includes/header.php";
 include __DIR__ . "/assets/includes/components/navbar.php";
 include __DIR__ . "/assets/includes/components/sidebar.php";
+
+require __DIR__ . '/../config/db.php';
+
+try {
+    $reference = $database->getReference('alunos/1');
+    $snapshot = $reference->getSnapshot();
+    $aluno = $snapshot->getValue();
+
+    $mensagemEnvelope = 'Nenhuma notificação encontrada.';
+    $mensagemBell = 'Nenhuma notificação encontrada.';
+    if ($aluno) {
+        if (isset($aluno['emails']) && !empty($aluno['emails'])) {
+            $mensagemEnvelope = $aluno['emails'][0]['mensagem'] ?? 'Nenhuma notificação encontrada.';
+        }
+        if (isset($aluno['notificacoes']) && !empty($aluno['notificacoes'])) {
+            $mensagemBell = $aluno['notificacoes'][0]['mensagem'] ?? 'Nenhuma notificação encontrada.';
+        }
+    }
+} catch (DatabaseException $e) {
+    $mensagemEnvelope = 'Erro ao acessar o banco de dados: ' . $e->getMessage();
+    $mensagemBell = 'Erro ao acessar o banco de dados: ' . $e->getMessage();
+}
 ?>
 
 <div class="main-content">
@@ -22,7 +44,7 @@ include __DIR__ . "/assets/includes/components/sidebar.php";
             <h4>Cronogramas das aulas!</h4>
             <p>Aqui você poderá ver o cronograma mais recente disponibilizado por seu coordenador!</p>
             <p>Constam nesse arquivo todas as aulas e encontros aos Sábados!</p>
-            <button>Acessar</button>
+            <a href="https://link.sc.senac.br/2NVBaE" target="_blank"><button>Download</button></a>
         </div>
         <div class="conteudo02">
             <h4>Descontos e Bolsas</h4>

@@ -3,30 +3,30 @@ $titulo = "Login";
 session_start();
 
 $erro = false;
+
+require __DIR__ . '/../config/db.php';
+
 if (isset($_POST['email'])) {
     // Recebe o e-mail e a senha enviados pelo formulário
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Inclui o arquivo de conexão com o banco de dados
-    include __DIR__ . '../assets/config/db.php';
-
-    // Prepara a consulta SQL para buscar o usuário no banco
-    $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindParam(":email", $email);
-    $stmt->execute();
-    
-    // Pega o resultado da consulta SQL
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Busca o usuário no Firebase
+    $reference = $database->getReference('usuarios');
+    $snapshot = $reference->orderByChild('email')->equalTo($email)->getSnapshot();
+    $usuarios = $snapshot->getValue();
 
     // Verifica se o usuário foi encontrado
-    if ($row && password_verify($senha, $row['senha'])) {
-        $_SESSION['logado'] = true;
-        header("Location: ../Tela_inicial/index.php");
-        exit;
-    } else {
-        $erro = "Usuário ou senha incorretos.";
+    if ($usuarios) {
+        foreach ($usuarios as $usuario) {
+            if (password_verify($senha, $usuario['senha'])) {
+                $_SESSION['logado'] = true;
+                header("Location: ../Tela_inicial/index.php");
+                exit;
+            }
+        }
     }
+    $erro = "Usuário ou senha incorretos.";
 }
 
 include __DIR__ . "/header.php";

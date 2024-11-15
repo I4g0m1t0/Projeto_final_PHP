@@ -2,6 +2,8 @@
 $titulo = "Cadastro";
 $erro = false;
 
+require __DIR__ . '/../config/db.php';
+
 // Verifica se o formulário foi enviado via método POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Recebe os dados do formulário
@@ -9,22 +11,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['emailCadastro'];
     $senha = $_POST['senhaCadastro'];
 
-    // Inclui a configuração do banco de dados
-    include __DIR__ . '../assets/config/db.php';
-
     // Cria um hash da senha
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Prepara a consulta SQL para inserir os dados na tabela 'usuarios'
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (:nome, :email, :senha)");
-    
-    // Vincula os parâmetros da consulta às variáveis
-    $stmt->bindParam(":nome", $nome);
-    $stmt->bindParam(":email", $email);
-    $stmt->bindParam(":senha", $senhaHash);
-    
-    // Executa a consulta
-    if ($stmt->execute()) {
+    // Prepara os dados para inserir no Firebase
+    $data = [
+        'nome' => $nome,
+        'email' => $email,
+        'senha' => $senhaHash
+    ];
+
+    // Insere os dados no Firebase
+    $newUser = $database->getReference('usuarios')->push($data);
+
+    if ($newUser) {
         header("Location: index.php");
         exit;
     } else {
